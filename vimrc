@@ -1,4 +1,5 @@
 " reference: https://dougblack.io/words/a-good-vimrc.html#colors
+set clipboard=unnamed " for copy pasting between vim instances
 
 syntax on
 colorscheme badwolf " cool colorscheme 
