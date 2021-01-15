@@ -18,6 +18,11 @@ ctrl+u -> half page up
 ctrl+d -> half page down
 
 f + char -> first instance of char on line 
+F + char -> first instance but backwards (good for function start)
+
+a -> insert after character 
+
+ci + [ or ci + char --> deletes everything between the brackets or parantheses
 
 gg -> top of file
 G -> bottom of file
