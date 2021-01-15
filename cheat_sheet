@@ -17,6 +17,8 @@ Navigating:
 ctrl+u -> half page up
 ctrl+d -> half page down
 
+f + char -> first instance of char on line 
+
 gg -> top of file
 G -> bottom of file
 
