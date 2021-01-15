@@ -1,0 +1,229 @@
+
+
+Commands:
+:w -> save
+:wq -> save and quit
+:e{file} -> edit file
+:n -> next file
+:vs / :vs{file} -> split window vertically
+:sp / :sp{file} -> split window horizontally
+    N.B. Usually moving between splits is <ctrl-w> + direction. <ctrl+w> closes
+    AWS, so I map <ctrl+direction> to move between splits (it's also faster)
+
+-------------------
+
+Navigating:
+
+ctrl+u -> half page up
+ctrl+d -> half page down
+
+gg -> top of file
+G -> bottom of file
+
+ctrl+y -> move up, preserving cursor position
+ctrl+e -> move down, preserving cursor position
+
+z. -> move cursor line to middle of screen
+
+{line number}G -> go to line number 
+
+/{search} -> search down
+?{search} -> search up
+
+* -> search down for current selection
+# -> search up for current selection
+
+n/N -> next / previous match to search
+
+{ / } -> prev / next paragraph
+( / ) -> prev / next paragraph or proceeding code
+[[ / ]] -> start / end of function
+[{ / ]} -> start / end of code block
+
+m{char} -> leave a mark named {char}
+'{char} -> jump to the line containing the mark named {char}
+`{char} -> jump to the exact location of the mark named {char}
+m{Capital} -> global mark (across splits)
+
+-------------------
+
+Motion:
+
+hjkl -> up/down/left/right
+
+0 -> beginning of line
+$ -> end of line
+^ -> first non-blank char
+
+% -> corresponding bracket/parenthesis/etc
+
+f{target} / F{target} -> go to target on line forward/backward
+t{target} / T{target} -> go just before target on line forward/backward
+
+;/, -> next / previous match to f/F/t/T 
+
+w -> next word
+W -> next whitespace
+b -> beginning of word
+e -> end of word
+
+-------------------
+
+Editing:
+i -> enter insert mode before current pos
+a -> enter insert mode after current pos
+A -> add at end of line
+s -> enter insert mode on current pos
+S -> remove all text from current line and enter insert mode
+
+x -> delete current selection
+
+o / O -> insert line below / above
+
+r{replacement} -> replace current selection with {replacement}
+
+>/< -> indent selection right / left
+
+d{motion} -> delete{motion}
+c{motion} -> change{motion}
+
+di{encapsulation} -> delete in {encapsulation}
+    e.g. diw, di(, di<, etc
+
+ci{encapsulation} -> change in {encapsulation}
+    e.g. ciw, ci(, ci<, etc
+
+da{encapsulation} / ca{encapsulation} -> delete/change around {encapsulation}
+
+u -> undo
+<c-r> -> redo
+
+y -> yank
+e.g. , Y (yank whole line), yiw, y$, y{motion}, etc
+    N.B. commands like d{motion} also copies selection to the paste buffer
+    To enable myself to yank a selection, delete my text, then paste the original
+    selection, I remap `e` to paste from the top of the yank stack
+
+p -> paste after pos
+P -> paste before pos
+
+%s/<before>/<after>/g -> find and replace <before> with <after>
+
+ctrl+v -> enter visual block mode
+    I / X (while in visual block) -> insert before selection / delete selection
+    (useful for comments)
+
+J -> join lines
+
+. -> repeat last command
+
+-------------------
+
+Macros
+
+q{buffer} -> begin recording to {buffer}
+q (while recording) -> stop recording
+
+@{buffer} -> replay macro stored at {buffer}
+{number}@{buffer} -> replay macro stored at {buffer} {number} times
+
+-------------------
+
+Bash shortcuts
+
+ctrl + p -> previous run command
+ctrl + n -> next run command
+
+ctrl + b -> move back one
+ctrl + f -> move forward one
+
+ctrl + e -> end of line
+ctrl + a -> beginning of line
+
+ctrl + u -> delete to beginning of line
+ctrl + r -> search backwards through history
+
+useful: enter command prepended with # to save but not execute
+
+-------------------
+
+Bash
+
+cd -> change directory
+pwd -> present working directory (path)
+cp -> copy from {orig} to {new}
+mv -> move from {orig} to {new}
+ls -> list
+    -a -> all
+    -h -> human readable
+    -l -> vertical list
+grep -> search {phrase} {location (default .)}
+    -r -> recursive
+    -i -> ignore case
+    -l -> list files
+    -n -> list line numbers
+Locations
+    .  -> current directory
+    .. -> previous directory
+    ~  -> home directory
+    -  -> last used directory
+    /  -> root
+
+vim `grep...` -> open files in vim buffer
+
+jobs -> see backgrounded processes
+vim ctrl-z  -> background vim
+& -> run process in background
+
+-------------------
+
+vimrc
+
+"tab autocomplete
+function! CleverTab()
+    if strpart( getline('.'), 0, col('.')-1 ) =~ '^\s*$'
+        return "\<Tab>"
+    else
+        return "\<C-X>\<C-I>"
+    endif
+endfunction
+inoremap <Tab> <C-R>=CleverTab()<CR>
+
+"Diff of unwritten changes
+function! s:DiffWithSaved()
+    let filetype=&ft
+    diffthis
+    vnew | r # | normal! 1Gdd
+    diffthis
+    exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! Diff call s:DiffWithSaved()
+
+"Characters going over line limit
+highlight OverLength ctermbg=cyan ctermfg=white guibg=#FFCC99
+match OverLength /\%81v.\+/
+
+"Whitespace end of line
+highlight ExtraWhitespace ctermbg=blue guibg=blue
+match ExtraWhitespace /\s\+$/
+
+-------------------
+
+vimcolors!
+
+~aahuang/.vim/colors/solarized.vim
+
+cp to ~/.vim/colors and add
+`syntax enable`
+`colorscheme solarized`
+to your ~/.vimrc
+
+(these colors only look right if you use solarized dark as terminal profile,
+you can change the base colors using a 256 x terminal color chart,
+just change the non hex values)
+
+
+Resources:
+
+in-depth stack overflow answer of the philosophy behind vim and how to use its language:
+https://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim
