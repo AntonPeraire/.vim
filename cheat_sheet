@@ -4,7 +4,8 @@ f + char -> first instance of char on line
 m{char} -> leave a mark named {char}
 '{char} -> jump to the line containing the mark named {char}
 `{char} -> jump to the exact location of the mark named {char}
-
+ctrl+y -> move up, preserving cursor position
+ctrl+e -> move down, preserving cursor position
 
 Commands:
 :w -> save
