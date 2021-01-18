@@ -6,6 +6,7 @@ m{char} -> leave a mark named {char}
 `{char} -> jump to the exact location of the mark named {char}
 ctrl+y -> move up, preserving cursor position
 ctrl+e -> move down, preserving cursor position
+:e -> reload file
 
 Commands:
 :w -> save
