@@ -8,6 +8,9 @@ ctrl+y -> move up, preserving cursor position
 ctrl+e -> move down, preserving cursor position
 :e -> reload file
 
+Deleting up to characters:
+https://askubuntu.com/questions/64833/vi-shortcut-to-delete-until-the-next-x-character
+
 Commands:
 :w -> save
 :wq -> save and quit
