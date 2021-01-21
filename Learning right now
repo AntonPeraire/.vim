@@ -12,3 +12,11 @@ m{char} -> leave a mark named {char}
 ctrl+y -> move up, preserving cursor position
 ctrl+e -> move down, preserving cursor position
 :e -> reload file
+
+
+Good to know: 
+* `:set paste` to fix pasting
+* set clipboard=unnamed to allow pasting between vim instances
+* :vs for vertical split. ctrl + w to move in split. ctrl + w then q to quit in vertical split.
+* `gd` for go to first instance of word (e.g. function declaration)
+* ctrl + r: redo undo
