@@ -1,13 +1,3 @@
-
-Learning Right Now:
-f + char -> first instance of char on line 
-m{char} -> leave a mark named {char}
-'{char} -> jump to the line containing the mark named {char}
-`{char} -> jump to the exact location of the mark named {char}
-ctrl+y -> move up, preserving cursor position
-ctrl+e -> move down, preserving cursor position
-:e -> reload file
-
 Deleting up to characters:
 https://askubuntu.com/questions/64833/vi-shortcut-to-delete-until-the-next-x-character
 
