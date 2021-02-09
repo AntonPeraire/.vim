@@ -1,6 +1,7 @@
 ## tmux 
 
 prefix + z, enlarges/minimizes current pane 
+prefix + [ to allow navigating output
 
 ## vim
 
