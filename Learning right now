@@ -1,7 +1,7 @@
 ## tmux 
 
-prefix + z, enlarges/minimizes current pane 
-prefix + [ to allow navigating output
+prefix + z, enlarges/minimizes current pane (also easier copy-paste)
+prefix + [ to allow navigating output 
 
 ## vim
 
